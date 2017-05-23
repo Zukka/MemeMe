@@ -52,8 +52,7 @@ class ViewController: UIViewController , UIImagePickerControllerDelegate, UINavi
         super.viewWillAppear(animated)
         subscribeToKeyboardShowNotifications()
         subscribeToKeyboardHideNotification()
-        cameraPickerButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
-    }
+        cameraPickerButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)    }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -62,7 +61,9 @@ class ViewController: UIViewController , UIImagePickerControllerDelegate, UINavi
     }
     
     func keyboardWillShow(_ notification: Notification) {
-        view.frame.origin.y -= getKeyboardHeight(notification)
+        if self.txt_bottom.isEditing {
+            view.frame.origin.y -= getKeyboardHeight(notification)
+        }
     }
     
     func keyboardWillHide(_ notification: Notification) {
