@@ -8,6 +8,19 @@
 
 import UIKit
 
-class CustomTextFieldDelegate: NSObject {
+class CustomTextFieldDelegate: NSObject, UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        
+        return true;
+        
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField.text! == "TOP" || textField.text! == "BOTTOM" {
+            textField.text! = ""
+        }
+    }
 
 }

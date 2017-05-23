@@ -40,6 +40,11 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
+    </array>
+    <!-- Add this key for access to photo library -->
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Pick an image</string>
+    <!-- -->
+
 </dict>
 </plist>

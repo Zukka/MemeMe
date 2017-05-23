@@ -8,16 +8,116 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController , UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
+
+    struct Meme {
+        var topString: String
+        var bottomString: String
+        var originalImage: UIImage
+        var memedImage: UIImage
+    }
+    
+    @IBOutlet weak var imagePickerView: UIImageView!
+    @IBOutlet weak var cameraPickerButton: UIBarButtonItem!
+    
+    @IBOutlet weak var txt_top: UITextField!
+    @IBOutlet weak var txt_bottom: UITextField!
+    @IBOutlet weak var memeToolbar: UIToolbar!
+    
+    let textfieldDelegate = CustomTextFieldDelegate()
+    
+    let memeTextAttributes:[String:Any] = [
+        NSStrokeColorAttributeName: UIColor.black,
+        NSForegroundColorAttributeName: UIColor.white,
+        NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 38)!,
+        NSStrokeWidthAttributeName: -1]
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        self.txt_bottom.text = "BOTTOM"
+        self.txt_bottom.defaultTextAttributes = memeTextAttributes
+        self.txt_bottom.textAlignment = .center
+        self.txt_bottom.delegate = textfieldDelegate
+
+        self.txt_top.text = "TOP"
+        self.txt_top.defaultTextAttributes = memeTextAttributes
+        self.txt_top.textAlignment = .center
+        self.txt_top.delegate = textfieldDelegate
+       
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        subscribeToKeyboardShowNotifications()
+        subscribeToKeyboardHideNotification()
+        cameraPickerButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        unsubscribeFromKeyboardShowNotifications()
+        unsubscribeFromKeyboardHideNotification()
+    }
+    
+    func keyboardWillShow(_ notification: Notification) {
+        view.frame.origin.y -= getKeyboardHeight(notification)
+    }
+    
+    func keyboardWillHide(_ notification: Notification) {
+        view.frame.origin.y = 0 // getKeyboardHeight(notification)
+    }
+    
+    func getKeyboardHeight(_ notification:Notification) ->CGFloat {
+        
+        let userInfo = notification.userInfo
+        let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue // of CGRect
+        
+        return keyboardSize.cgRectValue.height
+        
+    }
+    
+    func subscribeToKeyboardShowNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
+    }
+    
+    func subscribeToKeyboardHideNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
+    }
+    
+    func unsubscribeFromKeyboardShowNotifications() {
+        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
+    }
+    
+    func unsubscribeFromKeyboardHideNotification() {
+        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            imagePickerView.image = image
+        } else{
+            print("Something went wrong")
+        }
+        self.dismiss(animated: true, completion: nil)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func pickAnImageFromLibrary(_ sender: Any) {
+        
+        let pickerController = UIImagePickerController()
+        pickerController.delegate = self
+        pickerController.sourceType = .photoLibrary
+        self.present(pickerController, animated: true, completion: nil)
+        
+    }
+    
+    @IBAction func pickAnImageFromCamera(_ sender: Any) {
+        
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .camera
+        present(imagePicker, animated: true, completion: nil)
     }
 
 
