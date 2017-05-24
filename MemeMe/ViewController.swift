@@ -27,6 +27,7 @@ class ViewController: UIViewController , UIImagePickerControllerDelegate, UINavi
     @IBOutlet weak var txt_bottom: UITextField!
     @IBOutlet weak var memeToolbar: UIToolbar!
     
+    @IBOutlet weak var shareMemeButton: UIBarButtonItem!
     var newMemedImage: UIImage!
     
     let textfieldDelegate = CustomTextFieldDelegate()
@@ -131,6 +132,12 @@ class ViewController: UIViewController , UIImagePickerControllerDelegate, UINavi
     @IBAction func buildMemePressed(_ sender: Any) {
         newMemedImage = generateMemedImage()
         saveMeme()
+        self.shareMemeButton.isEnabled = true
+    }
+    
+    @IBAction func shareMemePressed(_ sender: Any) {
+        let controller = UIActivityViewController(activityItems: [newMemedImage], applicationActivities: nil)
+        self.present(controller, animated: true, completion: nil)
     }
     
     func saveMeme() {

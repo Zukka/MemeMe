@@ -53,6 +53,11 @@
                                             <action selector="buildMemePressed:" destination="BYZ-38-t0r" id="ITI-Jt-npA"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem enabled="NO" title="Share" id="XJ4-Zu-akA">
+                                        <connections>
+                                            <action selector="shareMemePressed:" destination="BYZ-38-t0r" id="xwg-LB-GrH"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FMg-Zl-TIc">
@@ -82,6 +87,7 @@
                         <outlet property="imagePickerView" destination="g8l-Jj-IaK" id="dr5-y3-mch"/>
                         <outlet property="memeToolbar" destination="1k5-lG-UMs" id="tte-aJ-sHl"/>
                         <outlet property="saveMemeButton" destination="pVr-sn-q0M" id="p6w-F5-XE8"/>
+                        <outlet property="shareMemeButton" destination="XJ4-Zu-akA" id="0ra-aN-Fxd"/>
                         <outlet property="txt_bottom" destination="FMg-Zl-TIc" id="ssf-rS-vHD"/>
                         <outlet property="txt_top" destination="81f-DA-vgJ" id="oqI-pm-Ynt"/>
                     </connections>
