@@ -130,12 +130,21 @@ class ViewController: UIViewController , UIImagePickerControllerDelegate, UINavi
 
     // Generate meme and save
     @IBAction func buildMemePressed(_ sender: Any) {
+        guard !checkTextfieldStatus() else {
+            print ("textfield is in editing mode")
+            return
+        }
         newMemedImage = generateMemedImage()
         saveMeme()
         self.shareMemeButton.isEnabled = true
     }
     
     @IBAction func shareMemePressed(_ sender: Any) {
+        
+        guard !checkTextfieldStatus() else {
+            print ("textfield is in editing mode")
+            return
+        }
         let controller = UIActivityViewController(activityItems: [newMemedImage], applicationActivities: nil)
         self.present(controller, animated: true, completion: nil)
     }
@@ -161,6 +170,12 @@ class ViewController: UIViewController , UIImagePickerControllerDelegate, UINavi
         return memedImage
     }
 
-
+    // check if textfields are in editing mode for prevent a bad meme
+    func checkTextfieldStatus() -> Bool{
+        if txt_top.isEditing || txt_bottom.isEditing {
+            return true
+        }
+        return false
+    }
 }
 
