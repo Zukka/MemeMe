@@ -45,6 +45,10 @@
     <key>NSPhotoLibraryUsageDescription</key>
     <string>Pick an image</string>
     <!-- -->
+    <!-- Add this key for access to camera -->
+    <key>NSCameraUsageDescription</key>
+    <string>Pick an image from camera</string>
+    <!-- -->
 
 </dict>
 </plist>
