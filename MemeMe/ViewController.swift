@@ -17,12 +17,17 @@ class ViewController: UIViewController , UIImagePickerControllerDelegate, UINavi
         var memedImage: UIImage
     }
     
+    var memes = [Meme]()
+    
     @IBOutlet weak var imagePickerView: UIImageView!
     @IBOutlet weak var cameraPickerButton: UIBarButtonItem!
+    @IBOutlet weak var saveMemeButton: UIBarButtonItem!
     
     @IBOutlet weak var txt_top: UITextField!
     @IBOutlet weak var txt_bottom: UITextField!
     @IBOutlet weak var memeToolbar: UIToolbar!
+    
+    var newMemedImage: UIImage!
     
     let textfieldDelegate = CustomTextFieldDelegate()
     
@@ -98,6 +103,7 @@ class ViewController: UIViewController , UIImagePickerControllerDelegate, UINavi
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             imagePickerView.image = image
+            self.saveMemeButton.isEnabled = true
         } else{
             print("Something went wrong")
         }
@@ -119,6 +125,33 @@ class ViewController: UIViewController , UIImagePickerControllerDelegate, UINavi
         imagePicker.delegate = self
         imagePicker.sourceType = .camera
         present(imagePicker, animated: true, completion: nil)
+    }
+
+    // Generate meme and save
+    @IBAction func buildMemePressed(_ sender: Any) {
+        newMemedImage = generateMemedImage()
+        saveMeme()
+    }
+    
+    func saveMeme() {
+        // Create the meme
+        let meme = Meme(topString: txt_top.text!, bottomString: txt_bottom.text!, originalImage: imagePickerView.image!, memedImage: newMemedImage)
+        memes.append(meme)
+    }
+    
+    func generateMemedImage() -> UIImage {
+        // Hide toolbar
+        memeToolbar.isHidden = true
+        // Render view to an image
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
+        let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        //Save it to the camera roll
+        UIImageWriteToSavedPhotosAlbum(memedImage, nil, nil, nil)
+        // Show toolbar
+        memeToolbar.isHidden = false
+        return memedImage
     }
 
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -19,25 +19,24 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="g8l-Jj-IaK">
-                                <rect key="frame" x="27" y="173" width="320" height="320"/>
+                                <rect key="frame" x="47" y="208" width="320" height="320"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="g8l-Jj-IaK" secondAttribute="height" multiplier="1:1" id="EaP-AY-Ce4"/>
-                                    <constraint firstAttribute="height" constant="320" id="Nzy-Ys-8PF"/>
                                     <constraint firstAttribute="width" constant="320" id="wVC-MC-bDF"/>
                                 </constraints>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="81f-DA-vgJ">
-                                <rect key="frame" x="27.5" y="216" width="320" height="17"/>
+                                <rect key="frame" x="47.666666666666657" y="251" width="320" height="17"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1k5-lG-UMs">
-                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="692" width="414" height="44"/>
                                 <items>
                                     <barButtonItem title="Library" id="NX0-62-3Fe">
                                         <connections>
@@ -49,10 +48,15 @@
                                             <action selector="pickAnImageFromCamera:" destination="BYZ-38-t0r" id="icd-cA-Isg"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem enabled="NO" title="Save Meme" id="pVr-sn-q0M">
+                                        <connections>
+                                            <action selector="buildMemePressed:" destination="BYZ-38-t0r" id="ITI-Jt-npA"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FMg-Zl-TIc">
-                                <rect key="frame" x="27.5" y="433" width="320" height="17"/>
+                                <rect key="frame" x="47.666666666666657" y="468" width="320" height="17"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -77,6 +81,7 @@
                         <outlet property="cameraPickerButton" destination="jFt-7U-OwM" id="dfn-O3-XgA"/>
                         <outlet property="imagePickerView" destination="g8l-Jj-IaK" id="dr5-y3-mch"/>
                         <outlet property="memeToolbar" destination="1k5-lG-UMs" id="tte-aJ-sHl"/>
+                        <outlet property="saveMemeButton" destination="pVr-sn-q0M" id="p6w-F5-XE8"/>
                         <outlet property="txt_bottom" destination="FMg-Zl-TIc" id="ssf-rS-vHD"/>
                         <outlet property="txt_top" destination="81f-DA-vgJ" id="oqI-pm-Ynt"/>
                     </connections>

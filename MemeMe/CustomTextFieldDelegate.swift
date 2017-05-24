@@ -22,5 +22,5 @@ class CustomTextFieldDelegate: NSObject, UITextFieldDelegate {
             textField.text! = ""
         }
     }
-
+    
 }
