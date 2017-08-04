@@ -19,6 +19,9 @@ class ViewController: UIViewController , UIImagePickerControllerDelegate, UINavi
     
     var memes = [Meme]()
     
+//  appAlertView show information to user in case of problem
+    var appAlertView :UIAlertController?
+    
     @IBOutlet weak var imagePickerView: UIImageView!
     @IBOutlet weak var cameraPickerButton: UIBarButtonItem!
     @IBOutlet weak var saveMemeButton: UIBarButtonItem!
@@ -73,13 +76,13 @@ class ViewController: UIViewController , UIImagePickerControllerDelegate, UINavi
     }
     
     func keyboardWillHide(_ notification: Notification) {
-        view.frame.origin.y = 0 // getKeyboardHeight(notification)
+        view.frame.origin.y = 0
     }
     
     func getKeyboardHeight(_ notification:Notification) ->CGFloat {
         
         let userInfo = notification.userInfo
-        let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue // of CGRect
+        let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue 
         
         return keyboardSize.cgRectValue.height
         
@@ -106,7 +109,7 @@ class ViewController: UIViewController , UIImagePickerControllerDelegate, UINavi
             imagePickerView.image = image
             self.saveMemeButton.isEnabled = true
         } else{
-            print("Something went wrong")
+            showAlertView(message: "Something went wrong")
         }
         self.dismiss(animated: true, completion: nil)
     }
@@ -117,7 +120,7 @@ class ViewController: UIViewController , UIImagePickerControllerDelegate, UINavi
         pickerController.delegate = self
         pickerController.sourceType = .photoLibrary
         self.present(pickerController, animated: true, completion: nil)
-        
+        resetTextfieldText()
     }
     
     @IBAction func pickAnImageFromCamera(_ sender: Any) {
@@ -126,12 +129,19 @@ class ViewController: UIViewController , UIImagePickerControllerDelegate, UINavi
         imagePicker.delegate = self
         imagePicker.sourceType = .camera
         present(imagePicker, animated: true, completion: nil)
+        resetTextfieldText()
+    }
+
+    // Reset the textfields text when i start to grab a new image from library or from camera 
+    func resetTextfieldText() {
+        txt_top.text! = "TOP"
+        txt_bottom.text! = "BOTTOM"
     }
 
     // Generate meme and save
     @IBAction func buildMemePressed(_ sender: Any) {
         guard !checkTextfieldStatus() else {
-            print ("textfield is in editing mode")
+            showAlertView(message: "textfield is in editing mode")
             return
         }
         newMemedImage = generateMemedImage()
@@ -142,7 +152,7 @@ class ViewController: UIViewController , UIImagePickerControllerDelegate, UINavi
     @IBAction func shareMemePressed(_ sender: Any) {
         
         guard !checkTextfieldStatus() else {
-            print ("textfield is in editing mode")
+            showAlertView(message: "textfield is in editing mode")
             return
         }
         let controller = UIActivityViewController(activityItems: [newMemedImage], applicationActivities: nil)
@@ -176,6 +186,21 @@ class ViewController: UIViewController , UIImagePickerControllerDelegate, UINavi
             return true
         }
         return false
+    }
+    
+    func showAlertView(message: String) {
+        
+        appAlertView = UIAlertController(title: "MemeMe - Alert",
+                                            message: message,
+                                            preferredStyle: .alert)
+        // Add action for close alert view
+        let action = UIAlertAction(title: "Close", style: UIAlertActionStyle.default,
+                                   handler: {(paramAction :UIAlertAction!) in
+                                    
+        })
+        appAlertView!.addAction(action)
+        
+        present(appAlertView!, animated: true, completion: nil)
     }
 }
 
