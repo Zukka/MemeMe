@@ -66,7 +66,7 @@ class MemeEditorViewController: UIViewController , UIImagePickerControllerDelega
     }
     
     func getKeyboardHeight(_ notification:Notification) ->CGFloat {
-                
+        
         if let rect = notification.userInfo![UIKeyboardFrameBeginUserInfoKey] as? NSValue {
             return rect.cgRectValue.height
         } else {
@@ -102,25 +102,20 @@ class MemeEditorViewController: UIViewController , UIImagePickerControllerDelega
     }
 
     @IBAction func pickAnImageFromLibrary(_ sender: Any) {
-        
-        let pickerController = UIImagePickerController()
-        pickerController.delegate = self
-        pickerController.sourceType = .photoLibrary
-        self.present(pickerController, animated: true, completion: nil)
-        prepareTextField(textField: txt_top, defaultText: "TOP")
-        prepareTextField(textField: txt_bottom, defaultText: "BOTTOM")
-
+        pick(sourceType: .photoLibrary)
     }
     
     @IBAction func pickAnImageFromCamera(_ sender: Any) {
-        
+        pick(sourceType: .camera)
+    }
+    
+    func pick(sourceType: UIImagePickerControllerSourceType){
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
-        imagePicker.sourceType = .camera
+        imagePicker.sourceType = sourceType
         present(imagePicker, animated: true, completion: nil)
         prepareTextField(textField: txt_top, defaultText: "TOP")
         prepareTextField(textField: txt_bottom, defaultText: "BOTTOM")
-
     }
     
     func prepareTextField(textField: UITextField, defaultText: String) {
