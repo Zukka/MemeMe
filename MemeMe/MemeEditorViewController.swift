@@ -38,16 +38,9 @@ class MemeEditorViewController: UIViewController , UIImagePickerControllerDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.txt_bottom.text = "BOTTOM"
-        self.txt_bottom.defaultTextAttributes = memeTextAttributes
-        self.txt_bottom.textAlignment = .center
-        self.txt_bottom.delegate = textfieldDelegate
+        prepareTextField(textField: txt_top, defaultText: "TOP")
+        prepareTextField(textField: txt_bottom, defaultText: "BOTTOM")
 
-        self.txt_top.text = "TOP"
-        self.txt_top.defaultTextAttributes = memeTextAttributes
-        self.txt_top.textAlignment = .center
-        self.txt_top.delegate = textfieldDelegate
-       
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -113,7 +106,9 @@ class MemeEditorViewController: UIViewController , UIImagePickerControllerDelega
         pickerController.delegate = self
         pickerController.sourceType = .photoLibrary
         self.present(pickerController, animated: true, completion: nil)
-        resetTextfieldText()
+        prepareTextField(textField: txt_top, defaultText: "TOP")
+        prepareTextField(textField: txt_bottom, defaultText: "BOTTOM")
+
     }
     
     @IBAction func pickAnImageFromCamera(_ sender: Any) {
@@ -122,15 +117,18 @@ class MemeEditorViewController: UIViewController , UIImagePickerControllerDelega
         imagePicker.delegate = self
         imagePicker.sourceType = .camera
         present(imagePicker, animated: true, completion: nil)
-        resetTextfieldText()
-    }
+        prepareTextField(textField: txt_top, defaultText: "TOP")
+        prepareTextField(textField: txt_bottom, defaultText: "BOTTOM")
 
-    // Reset the textfields text when i start to grab a new image from library or from camera 
-    func resetTextfieldText() {
-        txt_top.text! = "TOP"
-        txt_bottom.text! = "BOTTOM"
     }
-
+    
+    func prepareTextField(textField: UITextField, defaultText: String) {
+        textField.text = defaultText
+        textField.defaultTextAttributes = memeTextAttributes
+        textField.textAlignment = .center
+        textField.delegate = textfieldDelegate
+    }
+    
     // Generate meme and save
     @IBAction func buildMemePressed(_ sender: Any) {
         guard !checkTextfieldStatus() else {
