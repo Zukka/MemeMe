@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MemeEditorViewController.swift
 //  MemeMe
 //
 //  Created by Alessandro Bellotti on 23/05/17.
@@ -8,15 +8,8 @@
 
 import UIKit
 
-class ViewController: UIViewController , UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
+class MemeEditorViewController: UIViewController , UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
-    struct Meme {
-        var topString: String
-        var bottomString: String
-        var originalImage: UIImage
-        var memedImage: UIImage
-    }
-    
     var memes = [Meme]()
     
 //  appAlertView show information to user in case of problem
@@ -38,8 +31,8 @@ class ViewController: UIViewController , UIImagePickerControllerDelegate, UINavi
     let memeTextAttributes:[String:Any] = [
         NSStrokeColorAttributeName: UIColor.black,
         NSForegroundColorAttributeName: UIColor.white,
-        NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 38)!,
-        NSStrokeWidthAttributeName: -1]
+        NSFontAttributeName: UIFont(name: "Impact", size: 38)!,
+        NSStrokeWidthAttributeName: -3.5]
     
 
     override func viewDidLoad() {
