@@ -47,11 +47,6 @@
                                             <action selector="pickAnImageFromCamera:" destination="BYZ-38-t0r" id="icd-cA-Isg"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem enabled="NO" title="Save Meme" id="pVr-sn-q0M">
-                                        <connections>
-                                            <action selector="buildMemePressed:" destination="BYZ-38-t0r" id="ITI-Jt-npA"/>
-                                        </connections>
-                                    </barButtonItem>
                                     <barButtonItem enabled="NO" systemItem="action" id="XJ4-Zu-akA">
                                         <connections>
                                             <action selector="shareMemePressed:" destination="BYZ-38-t0r" id="xwg-LB-GrH"/>
@@ -85,7 +80,6 @@
                         <outlet property="cameraPickerButton" destination="jFt-7U-OwM" id="dfn-O3-XgA"/>
                         <outlet property="imagePickerView" destination="g8l-Jj-IaK" id="dr5-y3-mch"/>
                         <outlet property="memeToolbar" destination="1k5-lG-UMs" id="tte-aJ-sHl"/>
-                        <outlet property="saveMemeButton" destination="pVr-sn-q0M" id="p6w-F5-XE8"/>
                         <outlet property="shareMemeButton" destination="XJ4-Zu-akA" id="0ra-aN-Fxd"/>
                         <outlet property="txt_bottom" destination="FMg-Zl-TIc" id="ssf-rS-vHD"/>
                         <outlet property="txt_top" destination="81f-DA-vgJ" id="oqI-pm-Ynt"/>

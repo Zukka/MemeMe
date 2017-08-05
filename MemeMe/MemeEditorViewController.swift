@@ -17,8 +17,6 @@ class MemeEditorViewController: UIViewController , UIImagePickerControllerDelega
     
     @IBOutlet weak var imagePickerView: UIImageView!
     @IBOutlet weak var cameraPickerButton: UIBarButtonItem!
-    @IBOutlet weak var saveMemeButton: UIBarButtonItem!
-    
     @IBOutlet weak var txt_top: UITextField!
     @IBOutlet weak var txt_bottom: UITextField!
     @IBOutlet weak var memeToolbar: UIToolbar!
@@ -94,7 +92,7 @@ class MemeEditorViewController: UIViewController , UIImagePickerControllerDelega
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             imagePickerView.image = image
-            self.saveMemeButton.isEnabled = true
+//            self.saveMemeButton.isEnabled = true
         } else{
             showAlertView(message: "Something went wrong")
         }
@@ -116,6 +114,7 @@ class MemeEditorViewController: UIViewController , UIImagePickerControllerDelega
         present(imagePicker, animated: true, completion: nil)
         prepareTextField(textField: txt_top, defaultText: "TOP")
         prepareTextField(textField: txt_bottom, defaultText: "BOTTOM")
+        self.shareMemeButton.isEnabled = true
     }
     
     func prepareTextField(textField: UITextField, defaultText: String) {
@@ -124,25 +123,21 @@ class MemeEditorViewController: UIViewController , UIImagePickerControllerDelega
         textField.textAlignment = .center
         textField.delegate = textfieldDelegate
     }
-    
-    // Generate meme and save
-    @IBAction func buildMemePressed(_ sender: Any) {
-        guard !checkTextfieldStatus() else {
-            showAlertView(message: "textfield is in editing mode")
-            return
-        }
-        newMemedImage = generateMemedImage()
-        saveMeme()
-        self.shareMemeButton.isEnabled = true
-    }
-    
+   
     @IBAction func shareMemePressed(_ sender: Any) {
         
         guard !checkTextfieldStatus() else {
             showAlertView(message: "textfield is in editing mode")
             return
         }
+        self.newMemedImage = self.generateMemedImage()
         let controller = UIActivityViewController(activityItems: [newMemedImage], applicationActivities: nil)
+        controller.completionWithItemsHandler = {(activity, completed, items, error) in
+            if (completed) {
+                // Save Meme
+                self.saveMeme()
+            }
+        }
         self.present(controller, animated: true, completion: nil)
     }
     
