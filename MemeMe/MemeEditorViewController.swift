@@ -53,6 +53,23 @@ class MemeEditorViewController: UIViewController , UIImagePickerControllerDelega
         unsubscribeFromKeyboardHideNotification()
     }
     
+    // MARK : TextField funcs
+    func prepareTextField(textField: UITextField, defaultText: String) {
+        textField.text = defaultText
+        textField.defaultTextAttributes = memeTextAttributes
+        textField.textAlignment = .center
+        textField.delegate = textfieldDelegate
+    }
+
+    // check if textfields are in editing mode for prevent a bad meme
+    func checkTextfieldStatus() -> Bool{
+        if txt_top.isEditing || txt_bottom.isEditing {
+            return true
+        }
+        return false
+    }
+
+    // MARK : Menage show and hide keyboard
     func keyboardWillShow(_ notification: Notification) {
         if self.txt_bottom.isEditing {
             view.frame.origin.y -= getKeyboardHeight(notification)
@@ -89,10 +106,10 @@ class MemeEditorViewController: UIViewController , UIImagePickerControllerDelega
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
     }
     
+    // MARK : Pick image
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             imagePickerView.image = image
-//            self.saveMemeButton.isEnabled = true
         } else{
             showAlertView(message: "Something went wrong")
         }
@@ -117,15 +134,8 @@ class MemeEditorViewController: UIViewController , UIImagePickerControllerDelega
         self.shareMemeButton.isEnabled = true
     }
     
-    func prepareTextField(textField: UITextField, defaultText: String) {
-        textField.text = defaultText
-        textField.defaultTextAttributes = memeTextAttributes
-        textField.textAlignment = .center
-        textField.delegate = textfieldDelegate
-    }
-   
+    // MARK : Build, share and save Meme
     @IBAction func shareMemePressed(_ sender: Any) {
-        
         guard !checkTextfieldStatus() else {
             showAlertView(message: "textfield is in editing mode")
             return
@@ -161,15 +171,8 @@ class MemeEditorViewController: UIViewController , UIImagePickerControllerDelega
         memeToolbar.isHidden = false
         return memedImage
     }
-
-    // check if textfields are in editing mode for prevent a bad meme
-    func checkTextfieldStatus() -> Bool{
-        if txt_top.isEditing || txt_bottom.isEditing {
-            return true
-        }
-        return false
-    }
     
+    // MARK : Alert
     func showAlertView(message: String) {
         
         appAlertView = UIAlertController(title: "MemeMe - Alert",
