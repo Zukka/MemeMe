@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B6838F181F35F22D00AB0CF7 /* Meme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6838F171F35F22D00AB0CF7 /* Meme.swift */; };
+		B6838F1A1F35F7BB00AB0CF7 /* Impact.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B6838F191F35F7BB00AB0CF7 /* Impact.ttf */; };
 		B6C30D701ED47E3F0000D697 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C30D6F1ED47E3F0000D697 /* AppDelegate.swift */; };
 		B6C30D721ED47E3F0000D697 /* MemeEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C30D711ED47E3F0000D697 /* MemeEditorViewController.swift */; };
 		B6C30D751ED47E3F0000D697 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6C30D731ED47E3F0000D697 /* Main.storyboard */; };
@@ -18,6 +19,7 @@
 
 /* Begin PBXFileReference section */
 		B6838F171F35F22D00AB0CF7 /* Meme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Meme.swift; sourceTree = "<group>"; };
+		B6838F191F35F7BB00AB0CF7 /* Impact.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Impact.ttf; sourceTree = "<group>"; };
 		B6C30D6C1ED47E3F0000D697 /* MemeMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemeMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6C30D6F1ED47E3F0000D697 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6C30D711ED47E3F0000D697 /* MemeEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeEditorViewController.swift; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 				B6C30D711ED47E3F0000D697 /* MemeEditorViewController.swift */,
 				B6C30D731ED47E3F0000D697 /* Main.storyboard */,
 				B6838F171F35F22D00AB0CF7 /* Meme.swift */,
+				B6838F191F35F7BB00AB0CF7 /* Impact.ttf */,
 				B6C30D811ED48B620000D697 /* CustomTextFieldDelegate.swift */,
 				B6C30D761ED47E3F0000D697 /* Assets.xcassets */,
 				B6C30D781ED47E3F0000D697 /* LaunchScreen.storyboard */,
@@ -130,6 +133,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6838F1A1F35F7BB00AB0CF7 /* Impact.ttf in Resources */,
 				B6C30D7A1ED47E3F0000D697 /* LaunchScreen.storyboard in Resources */,
 				B6C30D771ED47E3F0000D697 /* Assets.xcassets in Resources */,
 				B6C30D751ED47E3F0000D697 /* Main.storyboard in Resources */,
