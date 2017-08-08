@@ -149,7 +149,7 @@ class MemeEditorViewController: UIViewController , UIImagePickerControllerDelega
                 // Save Meme
                 self.saveMeme()
                 // Here close Meme editor and display the list of sent memes
-            //    self.dismiss(animated: true, completion: nil)
+                self.dismiss(animated: true, completion: nil)
             }
         }
         self.present(controller, animated: true, completion: nil)
