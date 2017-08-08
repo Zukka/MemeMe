@@ -22,18 +22,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T5D-mt-ZVK">
-                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
-                                <items>
-                                    <navigationItem title="MemeMe" id="n4x-IP-GRj">
-                                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="action" id="XJ4-Zu-akA">
-                                            <connections>
-                                                <action selector="shareMemePressed:" destination="BYZ-38-t0r" id="xwg-LB-GrH"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="g8l-Jj-IaK">
                                 <rect key="frame" x="-4" y="64" width="328" height="372"/>
                             </imageView>
@@ -54,6 +42,18 @@
                                     </textField>
                                 </subviews>
                             </stackView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T5D-mt-ZVK">
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <items>
+                                    <navigationItem title="MemeMe" id="n4x-IP-GRj">
+                                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="action" id="XJ4-Zu-akA">
+                                            <connections>
+                                                <action selector="shareMemePressed:" destination="BYZ-38-t0r" id="xwg-LB-GrH"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1k5-lG-UMs">
                                 <rect key="frame" x="0.0" y="436" width="320" height="44"/>
                                 <items>
