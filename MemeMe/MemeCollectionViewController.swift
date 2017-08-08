@@ -40,8 +40,6 @@ class MemeCollectionViewController: UICollectionViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         
-        memes = appDelegate.memes
-        print("memes are: \(appDelegate.memes.count)")
         myCollectionView.reloadData()
     }
     /*
