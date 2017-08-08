@@ -10,20 +10,22 @@ import UIKit
 
 class MemeEditorViewController: UIViewController , UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
-    var memes = [Meme]()
-    
-//  appAlertView show information to user in case of problem
-    var appAlertView :UIAlertController?
-    
+    // MARK: IBOutlet
     @IBOutlet weak var imagePickerView: UIImageView!
     @IBOutlet weak var cameraPickerButton: UIBarButtonItem!
     @IBOutlet weak var txt_top: UITextField!
     @IBOutlet weak var txt_bottom: UITextField!
     @IBOutlet weak var memeToolbar: UIToolbar!
-    
     @IBOutlet weak var shareMemeButton: UIBarButtonItem!
-    var newMemedImage: UIImage!
+    @IBOutlet weak var memeTabBar: UINavigationBar!
     
+    // MARK: Variables
+    var newMemedImage: UIImage!
+    var memes = [Meme]()
+    //  appAlertView show information to user in case of problem
+    var appAlertView :UIAlertController?
+
+    // MARK: Constants
     let textfieldDelegate = CustomTextFieldDelegate()
     
     let memeTextAttributes:[String:Any] = [
@@ -146,6 +148,8 @@ class MemeEditorViewController: UIViewController , UIImagePickerControllerDelega
             if (completed) {
                 // Save Meme
                 self.saveMeme()
+                // Here close Meme editor and display the list of sent memes
+            //    self.dismiss(animated: true, completion: nil)
             }
         }
         self.present(controller, animated: true, completion: nil)
@@ -154,12 +158,18 @@ class MemeEditorViewController: UIViewController , UIImagePickerControllerDelega
     func saveMeme() {
         // Create the meme
         let meme = Meme(topString: txt_top.text!, bottomString: txt_bottom.text!, originalImage: imagePickerView.image!, memedImage: newMemedImage)
-        memes.append(meme)
+        
+        // Add it to the memes array in the Application Delegate
+        let object = UIApplication.shared.delegate
+        let appDelegate = object as! AppDelegate
+        appDelegate.memes.append(meme)
     }
     
     func generateMemedImage() -> UIImage {
         // Hide toolbar
         memeToolbar.isHidden = true
+        // Hide tabBar
+        memeTabBar.isHidden = true
         // Render view to an image
         UIGraphicsBeginImageContext(self.view.frame.size)
         view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
@@ -169,6 +179,8 @@ class MemeEditorViewController: UIViewController , UIImagePickerControllerDelega
         UIImageWriteToSavedPhotosAlbum(memedImage, nil, nil, nil)
         // Show toolbar
         memeToolbar.isHidden = false
+        // Show tabBar
+        memeTabBar.isHidden = false
         return memedImage
     }
     
