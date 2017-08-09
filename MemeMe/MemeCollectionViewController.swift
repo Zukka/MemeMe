@@ -28,16 +28,14 @@ class MemeCollectionViewController: UICollectionViewController {
         // Register cell classes
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
+        // Load Meme on start is not required for MemeMe 2.0 app
+        // https://discussions.udacity.com/t/how-to-load-pre-existing-meme-upload-opening-the-app/248993
+
         if appDelegate.memes.count == 0 {
             // No memes shared, start from MemeEditorViewController
             let object: AnyObject = storyboard!.instantiateViewController(withIdentifier: "MemeEditorViewController")
             let memeCreatorVC = object as! MemeEditorViewController
             present(memeCreatorVC, animated: false, completion: nil)
-        } else {
-            let object: AnyObject = storyboard!.instantiateViewController(withIdentifier: "MemeTableViewController")
-            let memeCreatorVC = object as! MemeEditorViewController
-            present(memeCreatorVC, animated: false, completion: nil)
-
         }
     }
 
