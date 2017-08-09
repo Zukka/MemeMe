@@ -66,6 +66,7 @@
                     <connections>
                         <outlet property="flowLayout" destination="muo-xK-qPR" id="j8y-4h-eRR"/>
                         <outlet property="myCollectionView" destination="5mR-39-xRp" id="ZOa-nO-1VA"/>
+                        <segue destination="avF-TW-sPT" kind="show" identifier="segueToMemeDetailFromGrid" id="SbI-ny-5Ge"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wEf-bc-wfK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -208,6 +209,38 @@
             </objects>
             <point key="canvasLocation" x="2190" y="-615"/>
         </scene>
+        <!--Meme Detail View Controller-->
+        <scene sceneID="0cY-dv-Qoj">
+            <objects>
+                <viewController id="avF-TW-sPT" customClass="MemeDetailViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="yJs-bz-4w5"/>
+                        <viewControllerLayoutGuide type="bottom" id="i7o-PF-hlA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1uQ-VC-GA7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="y2Y-fs-SSf">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="y2Y-fs-SSf" firstAttribute="top" secondItem="yJs-bz-4w5" secondAttribute="bottom" id="9ge-8V-kV0"/>
+                            <constraint firstItem="i7o-PF-hlA" firstAttribute="top" secondItem="y2Y-fs-SSf" secondAttribute="bottom" id="LH0-Sh-sfG"/>
+                            <constraint firstItem="y2Y-fs-SSf" firstAttribute="leading" secondItem="1uQ-VC-GA7" secondAttribute="leading" id="RbW-dk-Z0Q"/>
+                            <constraint firstAttribute="trailing" secondItem="y2Y-fs-SSf" secondAttribute="trailing" id="UwZ-Ww-fEa"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="memeImageDetail" destination="y2Y-fs-SSf" id="a0a-sw-r4N"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AVe-fD-aqM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2190" y="92"/>
+        </scene>
         <!--List View-->
         <scene sceneID="fgj-Mu-GIy">
             <objects>
@@ -298,6 +331,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="myTableView" destination="sbn-Ba-lav" id="TQ6-RR-bGO"/>
+                        <segue destination="avF-TW-sPT" kind="show" identifier="segueToMemeDetailFromList" id="l1Q-4x-uyQ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wsC-71-Mbn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -306,10 +340,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="gridList" width="32" height="32"/>
-        <image name="listView" width="32" height="32"/>
+        <image name="gridList" width="30" height="30"/>
+        <image name="listView" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="7ni-tY-AML"/>
+        <segue reference="l1Q-4x-uyQ"/>
     </inferredMetricsTieBreakers>
 </document>
