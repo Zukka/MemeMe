@@ -11,7 +11,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Send Memes-->
+        <!--Sent Memes-->
         <scene sceneID="viE-TL-xxY">
             <objects>
                 <collectionViewController id="TBA-2e-Cc1" customClass="MemeCollectionViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
@@ -54,7 +54,7 @@
                             <outlet property="delegate" destination="TBA-2e-Cc1" id="Fco-HI-3L4"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="Send Memes" id="1K6-Qq-bkI">
+                    <navigationItem key="navigationItem" title="Sent Memes" id="1K6-Qq-bkI">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="L8i-vv-gSa">
                             <connections>
                                 <segue destination="BYZ-38-t0r" kind="presentation" identifier="segueNewMemesFromGridList" id="HtW-0W-yFB"/>
@@ -64,7 +64,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="480"/>
                     <connections>
-                        <outlet property="flowLayout" destination="muo-xK-qPR" id="j8y-4h-eRR"/>
+                        <outlet property="flowLayout" destination="muo-xK-qPR" id="YE5-Eu-P6S"/>
                         <outlet property="myCollectionView" destination="5mR-39-xRp" id="ZOa-nO-1VA"/>
                         <segue destination="avF-TW-sPT" kind="show" identifier="segueToMemeDetailFromGrid" id="SbI-ny-5Ge"/>
                     </connections>
