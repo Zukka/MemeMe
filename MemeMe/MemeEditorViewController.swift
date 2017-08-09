@@ -13,8 +13,8 @@ class MemeEditorViewController: UIViewController , UIImagePickerControllerDelega
     // MARK: IBOutlet
     @IBOutlet weak var imagePickerView: UIImageView!
     @IBOutlet weak var cameraPickerButton: UIBarButtonItem!
-    @IBOutlet weak var txt_top: UITextField!
-    @IBOutlet weak var txt_bottom: UITextField!
+    @IBOutlet weak var topTextField: UITextField!
+    @IBOutlet weak var bottomTextField: UITextField!
     @IBOutlet weak var memeToolbar: UIToolbar!
     @IBOutlet weak var shareMemeButton: UIBarButtonItem!
     @IBOutlet weak var memeTabBar: UINavigationBar!
@@ -38,21 +38,19 @@ class MemeEditorViewController: UIViewController , UIImagePickerControllerDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        prepareTextField(textField: txt_top, defaultText: "TOP")
-        prepareTextField(textField: txt_bottom, defaultText: "BOTTOM")
+        prepareTextField(textField: topTextField, defaultText: "TOP")
+        prepareTextField(textField: bottomTextField, defaultText: "BOTTOM")
 
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        subscribeToKeyboardShowNotifications()
-        subscribeToKeyboardHideNotification()
+        subscribeToKeyboardNotifications()
         cameraPickerButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)    }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        unsubscribeFromKeyboardShowNotifications()
-        unsubscribeFromKeyboardHideNotification()
+        unsubscribeFromKeyboardNotifications()
     }
     
     // MARK : TextField funcs
@@ -65,7 +63,7 @@ class MemeEditorViewController: UIViewController , UIImagePickerControllerDelega
 
     // check if textfields are in editing mode for prevent a bad meme
     func checkTextfieldStatus() -> Bool{
-        if txt_top.isEditing || txt_bottom.isEditing {
+        if topTextField.isEditing || bottomTextField.isEditing {
             return true
         }
         return false
@@ -73,7 +71,7 @@ class MemeEditorViewController: UIViewController , UIImagePickerControllerDelega
 
     // MARK : Menage show and hide keyboard
     func keyboardWillShow(_ notification: Notification) {
-        if self.txt_bottom.isEditing {
+        if self.bottomTextField.isEditing {
             view.frame.origin.y -= getKeyboardHeight(notification)
         }
     }
@@ -92,19 +90,14 @@ class MemeEditorViewController: UIViewController , UIImagePickerControllerDelega
         
     }
     
-    func subscribeToKeyboardShowNotifications() {
+    func subscribeToKeyboardNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
-    }
-    
-    func subscribeToKeyboardHideNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
+
     }
     
-    func unsubscribeFromKeyboardShowNotifications() {
+    func unsubscribeFromKeyboardNotifications() {
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
-    }
-    
-    func unsubscribeFromKeyboardHideNotification() {
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
     }
     
@@ -131,8 +124,8 @@ class MemeEditorViewController: UIViewController , UIImagePickerControllerDelega
         imagePicker.delegate = self
         imagePicker.sourceType = sourceType
         present(imagePicker, animated: true, completion: nil)
-        prepareTextField(textField: txt_top, defaultText: "TOP")
-        prepareTextField(textField: txt_bottom, defaultText: "BOTTOM")
+        prepareTextField(textField: topTextField, defaultText: "TOP")
+        prepareTextField(textField: bottomTextField, defaultText: "BOTTOM")
         self.shareMemeButton.isEnabled = true
     }
     
@@ -157,7 +150,7 @@ class MemeEditorViewController: UIViewController , UIImagePickerControllerDelega
     
     func saveMeme() {
         // Create the meme
-        let meme = Meme(topString: txt_top.text!, bottomString: txt_bottom.text!, originalImage: imagePickerView.image!, memedImage: newMemedImage)
+        let meme = Meme(topString: topTextField.text!, bottomString: bottomTextField.text!, originalImage: imagePickerView.image!, memedImage: newMemedImage)
         
         // Add it to the memes array in the Application Delegate
         let object = UIApplication.shared.delegate

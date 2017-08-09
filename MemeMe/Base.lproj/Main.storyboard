@@ -190,13 +190,13 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bottomTextField" destination="FMg-Zl-TIc" id="ISc-dI-5gp"/>
                         <outlet property="cameraPickerButton" destination="jFt-7U-OwM" id="dfn-O3-XgA"/>
                         <outlet property="imagePickerView" destination="g8l-Jj-IaK" id="dr5-y3-mch"/>
                         <outlet property="memeTabBar" destination="T5D-mt-ZVK" id="HTd-Y3-jrA"/>
                         <outlet property="memeToolbar" destination="1k5-lG-UMs" id="tte-aJ-sHl"/>
                         <outlet property="shareMemeButton" destination="XJ4-Zu-akA" id="0ra-aN-Fxd"/>
-                        <outlet property="txt_bottom" destination="FMg-Zl-TIc" id="ssf-rS-vHD"/>
-                        <outlet property="txt_top" destination="81f-DA-vgJ" id="oqI-pm-Ynt"/>
+                        <outlet property="topTextField" destination="81f-DA-vgJ" id="Zh4-gD-HdH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
