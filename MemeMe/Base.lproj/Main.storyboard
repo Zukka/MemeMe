@@ -143,6 +143,11 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <items>
                                     <navigationItem title="MemeMe" id="n4x-IP-GRj">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="gHV-4o-u9k">
+                                            <connections>
+                                                <action selector="cancelMemeCreation:" destination="BYZ-38-t0r" id="Xvz-BT-dJ3"/>
+                                            </connections>
+                                        </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="action" id="XJ4-Zu-akA">
                                             <connections>
                                                 <action selector="shareMemePressed:" destination="BYZ-38-t0r" id="xwg-LB-GrH"/>
@@ -223,7 +228,7 @@
         <!--Meme Table View Controller-->
         <scene sceneID="d5I-gm-W91">
             <objects>
-                <tableViewController id="IpT-RP-Xz1" customClass="MemeTableViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="MemeTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="IpT-RP-Xz1" customClass="MemeTableViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="88" sectionHeaderHeight="28" sectionFooterHeight="28" id="sbn-Ba-lav">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

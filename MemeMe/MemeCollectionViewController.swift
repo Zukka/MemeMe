@@ -28,13 +28,16 @@ class MemeCollectionViewController: UICollectionViewController {
         // Register cell classes
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
-        // Do any additional setup after loading the view.
-        
         if appDelegate.memes.count == 0 {
             // No memes shared, start from MemeEditorViewController
             let object: AnyObject = storyboard!.instantiateViewController(withIdentifier: "MemeEditorViewController")
             let memeCreatorVC = object as! MemeEditorViewController
             present(memeCreatorVC, animated: false, completion: nil)
+        } else {
+            let object: AnyObject = storyboard!.instantiateViewController(withIdentifier: "MemeTableViewController")
+            let memeCreatorVC = object as! MemeEditorViewController
+            present(memeCreatorVC, animated: false, completion: nil)
+
         }
     }
 

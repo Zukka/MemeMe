@@ -179,6 +179,21 @@ class MemeEditorViewController: UIViewController , UIImagePickerControllerDelega
         memeTabBar.isHidden = hide
     }
     
+    // Cancel Meme and reset to default
+    @IBAction func cancelMemeCreation(_ sender: Any) {
+        prepareTextField(textField: topTextField, defaultText: "TOP")
+        prepareTextField(textField: bottomTextField, defaultText: "BOTTOM")
+        imagePickerView.image = nil
+        // Check if there are sent memes: 
+        // - YES: dismiss ViewController
+        // - NO: stay here
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        if appDelegate.memes.count > 0 {
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
+    
     // MARK: Alert
     func showAlertView(message: String) {
         
