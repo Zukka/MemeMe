@@ -53,6 +53,8 @@ class MemeTableViewController: UITableViewController {
         return cell
     }
     
+    // MARK: - Navigation
+    
     // Prepare and open MemeDetailViewController when tap on item list
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedItemList = appDelegate.memes[indexPath.item].memedImage

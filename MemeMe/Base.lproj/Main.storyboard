@@ -218,11 +218,11 @@
                         <viewControllerLayoutGuide type="bottom" id="i7o-PF-hlA"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="1uQ-VC-GA7">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="y2Y-fs-SSf">
-                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -258,7 +258,7 @@
             </objects>
             <point key="canvasLocation" x="70" y="-2"/>
         </scene>
-        <!--Meme Table View Controller-->
+        <!--Sent Memes-->
         <scene sceneID="d5I-gm-W91">
             <objects>
                 <tableViewController storyboardIdentifier="MemeTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="IpT-RP-Xz1" customClass="MemeTableViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
@@ -322,7 +322,7 @@
                             <outlet property="delegate" destination="IpT-RP-Xz1" id="eNl-0X-KqL"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="9hA-hC-6c0">
+                    <navigationItem key="navigationItem" title="Sent Memes" id="9hA-hC-6c0">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="bgc-pr-Ngb">
                             <connections>
                                 <segue destination="BYZ-38-t0r" kind="presentation" identifier="segueNewMemesFromListView" id="7ni-tY-AML"/>
@@ -344,7 +344,7 @@
         <image name="listView" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="7ni-tY-AML"/>
-        <segue reference="l1Q-4x-uyQ"/>
+        <segue reference="SbI-ny-5Ge"/>
+        <segue reference="HtW-0W-yFB"/>
     </inferredMetricsTieBreakers>
 </document>
