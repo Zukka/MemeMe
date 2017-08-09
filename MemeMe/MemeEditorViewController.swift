@@ -160,9 +160,7 @@ class MemeEditorViewController: UIViewController , UIImagePickerControllerDelega
     
     func generateMemedImage() -> UIImage {
         // Hide toolbar
-        memeToolbar.isHidden = true
-        // Hide tabBar
-        memeTabBar.isHidden = true
+        layoutBars(hide: true)
         // Render view to an image
         UIGraphicsBeginImageContext(self.view.frame.size)
         view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
@@ -171,13 +169,17 @@ class MemeEditorViewController: UIViewController , UIImagePickerControllerDelega
         //Save it to the camera roll
         UIImageWriteToSavedPhotosAlbum(memedImage, nil, nil, nil)
         // Show toolbar
-        memeToolbar.isHidden = false
-        // Show tabBar
-        memeTabBar.isHidden = false
+        layoutBars(hide: false)
         return memedImage
     }
     
-    // MARK : Alert
+    // Hide and show TabBar and ToolBar
+    func layoutBars (hide: Bool) {
+        memeToolbar.isHidden = hide
+        memeTabBar.isHidden = hide
+    }
+    
+    // MARK: Alert
     func showAlertView(message: String) {
         
         appAlertView = UIAlertController(title: "MemeMe - Alert",
