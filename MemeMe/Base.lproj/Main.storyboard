@@ -212,7 +212,7 @@
         <!--Meme Detail View Controller-->
         <scene sceneID="0cY-dv-Qoj">
             <objects>
-                <viewController id="avF-TW-sPT" customClass="MemeDetailViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="avF-TW-sPT" customClass="MemeDetailViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yJs-bz-4w5"/>
                         <viewControllerLayoutGuide type="bottom" id="i7o-PF-hlA"/>

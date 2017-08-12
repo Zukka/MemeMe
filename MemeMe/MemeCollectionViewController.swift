@@ -83,7 +83,7 @@ class MemeCollectionViewController: UICollectionViewController {
         
         selectedItemList = appDelegate.memes[indexPath.item].memedImage
         self.performSegue(withIdentifier: "segueToMemeDetailFromGrid", sender: nil)
-
+        
         return true
     }
 
