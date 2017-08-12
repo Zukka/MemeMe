@@ -49,6 +49,19 @@ class MemeTableViewController: UITableViewController {
         return cell
     }
     
+    // MARK: - Table view delete
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == UITableViewCellEditingStyle.delete) {
+            // handle delete (by removing the data from your array and updating the tableview)
+            appDelegate.memes.remove(at: indexPath.item)
+            myTableView.reloadData()
+        }
+    }
+    
     // MARK: - Navigation
     
     // Prepare and open MemeDetailViewController when tap on item list
