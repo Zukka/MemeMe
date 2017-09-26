@@ -29,10 +29,10 @@ class MemeEditorViewController: UIViewController , UIImagePickerControllerDelega
     let textfieldDelegate = CustomTextFieldDelegate()
     
     let memeTextAttributes:[String:Any] = [
-        NSStrokeColorAttributeName: UIColor.black,
-        NSForegroundColorAttributeName: UIColor.white,
-        NSFontAttributeName: UIFont(name: "Impact", size: 38)!,
-        NSStrokeWidthAttributeName: -3.5]
+        NSAttributedStringKey.strokeColor.rawValue: UIColor.black,
+        NSAttributedStringKey.foregroundColor.rawValue: UIColor.white,
+        NSAttributedStringKey.font.rawValue: UIFont(name: "Impact", size: 38)!,
+        NSAttributedStringKey.strokeWidth.rawValue: -3.5]
     
 
     override func viewDidLoad() {
@@ -70,13 +70,13 @@ class MemeEditorViewController: UIViewController , UIImagePickerControllerDelega
     }
 
     // MARK : Menage show and hide keyboard
-    func keyboardWillShow(_ notification: Notification) {
+    @objc func keyboardWillShow(_ notification: Notification) {
         if self.bottomTextField.isEditing {
             view.frame.origin.y -= getKeyboardHeight(notification)
         }
     }
     
-    func keyboardWillHide(_ notification: Notification) {
+    @objc func keyboardWillHide(_ notification: Notification) {
         view.frame.origin.y = 0
     }
     
