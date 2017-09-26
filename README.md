@@ -7,8 +7,8 @@ MemeMe is a challenge app for Udacity Nanodegree program.
 
 ## Requirements
 
-- Xcode Xcode 8.3.3
-- Swift 3.0
+- Xcode Xcode 9.0
+- Swift 4.0
 
 ## License
 
