@@ -54,8 +54,8 @@ class MemeTableViewController: UITableViewController {
         return true
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if (editingStyle == UITableViewCellEditingStyle.delete) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == UITableViewCell.EditingStyle.delete) {
             // handle delete (by removing the data from your array and updating the tableview)
             appDelegate.memes.remove(at: indexPath.item)
             myTableView.reloadData()

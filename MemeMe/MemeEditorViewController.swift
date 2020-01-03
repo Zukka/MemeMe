@@ -29,10 +29,10 @@ class MemeEditorViewController: UIViewController , UIImagePickerControllerDelega
     let textfieldDelegate = CustomTextFieldDelegate()
     
     let memeTextAttributes:[String:Any] = [
-        NSAttributedStringKey.strokeColor.rawValue: UIColor.black,
-        NSAttributedStringKey.foregroundColor.rawValue: UIColor.white,
-        NSAttributedStringKey.font.rawValue: UIFont(name: "Impact", size: 38)!,
-        NSAttributedStringKey.strokeWidth.rawValue: -3.5]
+        NSAttributedString.Key.strokeColor.rawValue: UIColor.black,
+        NSAttributedString.Key.foregroundColor.rawValue: UIColor.white,
+        NSAttributedString.Key.font.rawValue: UIFont(name: "Impact", size: 38)!,
+        NSAttributedString.Key.strokeWidth.rawValue: -3.5]
     
 
     override func viewDidLoad() {
@@ -56,7 +56,7 @@ class MemeEditorViewController: UIViewController , UIImagePickerControllerDelega
     // MARK : TextField funcs
     func prepareTextField(textField: UITextField, defaultText: String) {
         textField.text = defaultText
-        textField.defaultTextAttributes = memeTextAttributes
+        textField.defaultTextAttributes = convertToNSAttributedStringKeyDictionary(memeTextAttributes)
         textField.textAlignment = .center
         textField.delegate = textfieldDelegate
     }
@@ -82,7 +82,7 @@ class MemeEditorViewController: UIViewController , UIImagePickerControllerDelega
     
     func getKeyboardHeight(_ notification:Notification) ->CGFloat {
         
-        if let rect = notification.userInfo![UIKeyboardFrameBeginUserInfoKey] as? NSValue {
+        if let rect = notification.userInfo![UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue {
             return rect.cgRectValue.height
         } else {
             return CGFloat(0)
@@ -91,19 +91,22 @@ class MemeEditorViewController: UIViewController , UIImagePickerControllerDelega
     }
     
     func subscribeToKeyboardNotifications() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
 
     }
     
     func unsubscribeFromKeyboardNotifications() {
-        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     // MARK : Pick image
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+// Local variable inserted by Swift 4.2 migrator.
+let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+
+        if let image = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage {
             imagePickerView.image = image
         } else{
             showAlertView(message: "Something went wrong")
@@ -119,7 +122,7 @@ class MemeEditorViewController: UIViewController , UIImagePickerControllerDelega
         pick(sourceType: .camera)
     }
     
-    func pick(sourceType: UIImagePickerControllerSourceType){
+    func pick(sourceType: UIImagePickerController.SourceType){
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = sourceType
@@ -136,7 +139,7 @@ class MemeEditorViewController: UIViewController , UIImagePickerControllerDelega
             return
         }
         self.newMemedImage = self.generateMemedImage()
-        let controller = UIActivityViewController(activityItems: [newMemedImage], applicationActivities: nil)
+        let controller = UIActivityViewController(activityItems: [newMemedImage as Any], applicationActivities: nil)
         controller.completionWithItemsHandler = {(activity, completed, items, error) in
             if (completed) {
                 // Save Meme
@@ -195,7 +198,7 @@ class MemeEditorViewController: UIViewController , UIImagePickerControllerDelega
                                             message: message,
                                             preferredStyle: .alert)
         // Add action for close alert view
-        let action = UIAlertAction(title: "Close", style: UIAlertActionStyle.default,
+        let action = UIAlertAction(title: "Close", style: UIAlertAction.Style.default,
                                    handler: {(paramAction :UIAlertAction!) in
                                     
         })
@@ -205,3 +208,18 @@ class MemeEditorViewController: UIViewController , UIImagePickerControllerDelega
     }
 }
 
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToNSAttributedStringKeyDictionary(_ input: [String: Any]) -> [NSAttributedString.Key: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+	return input.rawValue
+}
